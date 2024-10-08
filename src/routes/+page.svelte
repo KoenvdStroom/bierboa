@@ -1,38 +1,29 @@
 <script>
 	// import Counter from './Counter_old.svelte';
-	import Counter from "./Counter.svelte";
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import Counter from "$lib/components/Counter.svelte";
+	export let data;
+	let users = data.users
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>BierBoa</title>
+	<meta name="description" content="BierBoa" />
 </svelte:head>
 
 <section>
-		<Counter name="Koen"/>
+	{#each users as {name, count}}
+		<div class="name">
+			<h1>{name}</h1>
+		</div>
+		<Counter name={name} start={count}/>
+
+	{/each}
 </section>
 
 <style>
 	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
+		display: grid;
+		grid-template-columns: auto auto auto auto;
+		
 	}
-
-	/* h1 {
-		width: 100%;
-	} */
-
-	/* .container{
-		display: flex;
-		flex-direction: row;
-	}
-
-	.name{
-		padding-right: 50%;
-	} */
 </style>
